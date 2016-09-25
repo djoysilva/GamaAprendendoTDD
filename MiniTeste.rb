@@ -1,15 +1,14 @@
 require 'MiniTeste/autorun'
 require 'MiniTeste/pride'
+require 'MiniTeste/spec'
 require './furlong'
 
 class MiniTeste
-
-    def test_one_furlong
-        km = Furlong.new.furlong_to_kilometers(1)
-        assert_in_delta 0.201168, km, 0.001
+    describe Furlong do
+        let(:calculator){Furlong.new}
+        
+        it "converts 1 furlong to 0.201168 km" do
+		    calculator.furlong_to_kilometers(1).must_be_within_delta(0.201168, 0.001)
+        end    
     end
-
-    def test_marathon
-        km = Furlong.new.furlong_to_kilometers(209.75)
-        assert_in_delta 42.194988, km, 0.001
-end
+end    
